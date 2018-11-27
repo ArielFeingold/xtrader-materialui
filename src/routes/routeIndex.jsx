@@ -1,8 +1,10 @@
 import LoginPage from "../views/LoginPage.jsx";
+import SignupPage from "../views/SignupPage.jsx";
 
 
 const routeIndex = [
-  { path: "/login-page", name: "ProfilePage", component: LoginPage },
+  { path: "/login", name: "LoginPage", component: LoginPage },
+  { path: "/signup", name: "SignupPage", component: SignupPage },
   { path: "/", name: "LandingPage", component: LoginPage }
 ];
 
