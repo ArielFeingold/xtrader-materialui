@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch } from "react-router-dom";
+import Navbar from './components/Navbar';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import bg from './assets/images/5150.jpg';
+
+import indexRoutes from "./routes/routeIndex";
+
+const App = () => {
+
+  const hist = createBrowserHistory();
+
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <Navbar />
+        <Router history={hist}>
+          <Switch>
+            {indexRoutes.map((prop, key) => {
+              return <Route path={prop.path} key={key} component={prop.component} />;
+            })}
+          </Switch>
+        </Router>
+    </React.Fragment>
+  );
 }
 
 export default App;
