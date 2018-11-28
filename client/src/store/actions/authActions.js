@@ -86,9 +86,9 @@ export const login = (email, password) => {
       })
       .catch(response => {
         if(response.message === "Request failed with status code 404"){
-          dispatch(loginFail("Email/Password Combination Not Found"))
+          dispatch(loginFail("User not found, please enter a valid password-email combination"))
         }else{
-          dispatch(loginFail("No Connection"))
+          dispatch(loginFail("Unable to connect to server. Please check your connection or try again later"))
         }
       })
     }

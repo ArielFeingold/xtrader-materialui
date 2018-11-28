@@ -65,12 +65,12 @@ class SignupPage extends React.Component {
     return (
       <div className={classes.root}>
         {authRedirect}
-        <Grid container spacing={24}>
+        <Grid container>
+          <Grid item xs={12} className={classes.header}>
+            <Typography style={{color:"white"}} variant="h4">SIGNUP</Typography>
+          </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Grid >
-                <Typography className={classes.header} variant="h4">Signup</Typography>
-              </Grid>
               <Grid>
                 <form onSubmit={this.submitHandler}>
                   <TextField

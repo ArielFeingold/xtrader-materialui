@@ -58,13 +58,21 @@ class LoginPage extends React.Component {
       </Collapse>
     }
 
+    let authRedirect = null;
+      if ( this.props.isAuthenticated ) {
+          authRedirect = <Redirect to="/protfolio" />
+      }
+
     return (
       <div className={classes.root}>
-        <Grid container spacing={24}>
+        {authRedirect}
+        <Grid container>
+          <Grid item xs={12} className={classes.header}>
+            <Typography style={{color:"white"}} variant="h4">LOGIN</Typography>
+              {loginError}
+          </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Typography variant="h4">Login</Typography>
-                {loginError}
               <form onSubmit={this.submitHandler}>
                 <TextField
                   fullWidth

@@ -17,7 +17,12 @@ const signupPageStyle = theme =>({
     height: "3em"
   },
   header: {
-    marginBottom:"0.5em"
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.textPrimary,
+    maxWidth: "500px",
+    margin:"auto",
+    background: "#48AAB8",
   }
 });
 

@@ -8,7 +8,8 @@ const loginPageStyle = theme =>({
     textAlign: 'center',
     color: theme.palette.text.primary,
     maxWidth: "500px",
-    margin: "auto"
+    margin: "auto",
+    marginTop:"0"
   },
   button: {
     width: "50%",
@@ -19,6 +20,14 @@ const loginPageStyle = theme =>({
   errorMessage: {
     marginTop:"1em",
     color:"red"
+  },
+  header: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.textPrimary,
+    maxWidth: "500px",
+    margin:"auto",
+    background: "#48AAB8",
   }
 });
 

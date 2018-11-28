@@ -1363,3 +1363,19 @@ Processing by UserTokenController#create as HTML
 Completed 201 Created in 104ms (Views: 5.6ms | ActiveRecord: 0.3ms)
 
 
+Started POST "/user_token" for ::1 at 2018-11-28 06:59:35 -0500
+Processing by UserTokenController#create as HTML
+  Parameters: {"auth"=>{"email"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ /Users/ariel_feingold/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 404 Not Found in 10ms (ActiveRecord: 1.7ms)
+
+
+Started POST "/user_token" for ::1 at 2018-11-28 07:03:18 -0500
+Processing by UserTokenController#create as HTML
+  Parameters: {"auth"=>{"email"=>"", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ /Users/ariel_feingold/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms)
+
+
