@@ -13,18 +13,20 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 
+import PopupMenu from './PopupMenu'
 import navbarStyle from '../assets/jss/navbarStyle'
 
 function Navbar(props) {
   const { classes } = props;
 
-  let tabs;
+  let tabs, menuLinks;
   if(!props.isAuthenticated) {
     tabs =
     <Grid container justify="flex-end" sm={10}>
       <Link className={classes.link} to="/login"><Button color="inherit">Login</Button></Link>
       <Link className={classes.link} to="/signup"><Button color="inherit">Signup</Button></Link>
     </Grid>
+    menuLinks = [{link:"/login", name:"Login"}, {link:"/signup", name:"Signup"} ]
   } else {
     tabs =
     <React.Fragment>
@@ -36,6 +38,7 @@ function Navbar(props) {
       <Button className={classes.menuButton} color="inherit">Logout</Button>
     </Grid>
   </React.Fragment>
+  menuLinks = [{link:"/protfolio", name:"Protfolio"}, {link:"/transactions", name:"Transactions"}, {link:"/logout", name:"Logout"}]
   }
 
 
@@ -53,9 +56,10 @@ function Navbar(props) {
           </Hidden>
           <Hidden smUp>
             <Grid>
-              <MenuIcon className={classes.menuIcon}/>
+              <PopupMenu
+                tabs={menuLinks}
+              />
             </Grid>
-
           </Hidden>
         </Toolbar>
       </AppBar>

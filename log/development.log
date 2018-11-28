@@ -1483,3 +1483,29 @@ Migrating to AddSymbolToTrades (20181010212609)
   ↳ /Users/ariel_feingold/.rvm/gems/ruby-2.5.1/bin/rake:23
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/ariel_feingold/.rvm/gems/ruby-2.5.1/bin/rake:23
+Started POST "/users" for ::1 at 2018-11-28 15:18:24 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/ariel_feingold/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]", "username"=>"Ariel"}}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:8
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:8
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "Ariel"], ["email", "test1@gmail.com"], ["password_digest", "$2a$10$M1nju8/Kqp5S7CbZeIyYkec/8jxSw2fwhxI3SGAwF6hUs7VseREJS"], ["created_at", "2018-11-28 20:18:24.894184"], ["updated_at", "2018-11-28 20:18:24.894184"]]
+  ↳ app/controllers/users_controller.rb:8
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:8
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.18ms)
+Completed 200 OK in 203ms (Views: 8.9ms | ActiveRecord: 3.8ms)
+
+
+Started POST "/user_token" for ::1 at 2018-11-28 15:18:28 -0500
+Processing by UserTokenController#create as HTML
+  Parameters: {"auth"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "user_token"=>{"auth"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ /Users/ariel_feingold/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.1/lib/active_record/log_subscriber.rb:98
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Knock::AuthToken (0.09ms)
+Completed 201 Created in 76ms (Views: 2.3ms | ActiveRecord: 0.2ms)
+
+
