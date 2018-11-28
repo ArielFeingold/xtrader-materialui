@@ -1,7 +1,8 @@
 const navbarStyle = {
   root: {
     flexGrow: 1,
-    color: "white"
+    color: "white",
+    width: "100%"
   },
   grow: {
     flexGrow: 1,
@@ -11,8 +12,9 @@ const navbarStyle = {
     marginRight: 20,
     color: "white",
   },
-  menuIcon: {
-    // color: "white"
+  link: {
+    textDecoration:"none",
+    color:"white"
   }
 }
 
