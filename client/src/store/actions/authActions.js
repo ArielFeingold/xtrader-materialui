@@ -9,7 +9,6 @@ export const signupStart = () => {
 };
 
 export const signupSuccess = (user) => {
-  debugger
     return {
         type: actionTypes.SIGNUP_SUCCESS,
         userId: user.id,
@@ -87,7 +86,7 @@ export const login = (email, password) => {
       })
       .catch(response => {
         if(response.message === "Request failed with status code 404"){
-          dispatch(loginFail("Not Found"))
+          dispatch(loginFail("Email/Password Combination Not Found"))
         }else{
           dispatch(loginFail("No Connection"))
         }

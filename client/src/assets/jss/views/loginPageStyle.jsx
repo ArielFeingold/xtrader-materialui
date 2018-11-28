@@ -11,11 +11,14 @@ const loginPageStyle = theme =>({
     margin: "auto"
   },
   button: {
-
     width: "50%",
     margin: "auto",
     marginTop: "2em",
     height: "3em"
+  },
+  errorMessage: {
+    marginTop:"1em",
+    color:"red"
   }
 });
 
