@@ -20,7 +20,7 @@ const protfolioPageStyle = theme =>({
   formHeader: {
     backgroundColor:"#48AAB8",
     textAlign: "center",
-    padding: "0.25em"
+    padding: "0.55em"
   },
   subtitle1: {
     color: "#fff",

@@ -37,16 +37,16 @@ class Protfolio extends React.Component {
             <Paper>
               <List style={{paddingTop:"0"}}>
                 <ListItem className={classes.header}>
-                  <Grid item xs={2}>
+                  <Grid item xs={3}>
                     <Typography className={classes.subtitle1} variant="subtitle1">Stock</Typography>
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <Typography className={classes.subtitle1} variant="subtitle1">Shares</Typography>
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <Typography className={classes.subtitle1} variant="subtitle1">Value</Typography>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item xs={3}>
                     <Typography className={classes.subtitle1} variant="subtitle1">Trend</Typography>
                   </Grid>
                  </ListItem>
@@ -60,7 +60,7 @@ class Protfolio extends React.Component {
           </Grid>
           <Grid item xs={12} sm={4}>
             <Grid item xs={12} className={classes.formHeader}>
-              <Typography style={{color:"white"}} variant="h6">Trade Stocks</Typography>
+              <Typography style={{color:"white"}} variant="h6">Buy Stocks</Typography>
             </Grid>
             <div>
               <Paper className={classes.paper}>
@@ -90,12 +90,13 @@ class Protfolio extends React.Component {
                      variant="outlined"
                     />
                     <Button
+                      fullWidth
                       type="submit"
                       variant="contained"
                       color="primary"
                       className={classes.button}
                       size="large">
-                      Login
+                      Buy
                     </Button>
                 </form>
               </Paper>
