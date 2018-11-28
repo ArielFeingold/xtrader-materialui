@@ -9,6 +9,7 @@ export const signupStart = () => {
 };
 
 export const signupSuccess = (user) => {
+  debugger
     return {
         type: actionTypes.SIGNUP_SUCCESS,
         userId: user.id,
@@ -37,7 +38,6 @@ export const signup = (email, password, username) => {
       let url = 'http://localhost:3001/users';
       axios.post(url, authData )
       .then(response => {
-        debugger
         dispatch(signupSuccess(response.data.user))})
       .catch(error => {dispatch(signupFail(error.response.data.error))})
       };

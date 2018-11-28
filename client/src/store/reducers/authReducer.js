@@ -17,12 +17,12 @@ const signupStart = ( state, action ) => {
 };
 
 const signupSuccess = (state, action) => {
-  debugger
     return updateObject( state, {
         userId: action.userId,
         error: null,
         loading: false,
-        isNewSignup: true
+        isNewSignup: true,
+        userEmail: action.userEmail
      } );
 };
 
