@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
+import Grid from '@material-ui/core/Grid';
 
 import navbarStyle from '../assets/jss/navbarStyle'
 
@@ -20,16 +21,21 @@ function Navbar(props) {
   let tabs;
   if(!props.isAuthenticated) {
     tabs =
-    <React.Fragment>
+    <Grid container justify="flex-end" sm={10}>
       <Link className={classes.link} to="/login"><Button color="inherit">Login</Button></Link>
       <Link className={classes.link} to="/signup"><Button color="inherit">Signup</Button></Link>
-    </React.Fragment>
+    </Grid>
   } else {
-    tabs = <React.Fragment>
+    tabs =
+    <React.Fragment>
+    <Grid container justify="flex-start" sm={6}>
       <Button className={classes.menuButton} color="inherit">Protfolio</Button>
       <Button className={classes.menuButton} color="inherit">Trade History</Button>
+    </Grid>
+    <Grid container justify="flex-end" sm={4}>
       <Button className={classes.menuButton} color="inherit">Logout</Button>
-    </React.Fragment>
+    </Grid>
+  </React.Fragment>
   }
 
 
@@ -37,14 +43,19 @@ function Navbar(props) {
     <div className={classes.root}>
       <AppBar position="relative" color="primary">
         <Toolbar>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            News
-          </Typography>
+          <Grid xs={11} sm={2}>
+            <Typography variant="h6" color="inherit" className={classes.grow}>
+              xTrader
+            </Typography>
+          </Grid>
           <Hidden xsDown>
             {tabs}
           </Hidden>
           <Hidden smUp>
+            <Grid>
               <MenuIcon className={classes.menuIcon}/>
+            </Grid>
+
           </Hidden>
         </Toolbar>
       </AppBar>
