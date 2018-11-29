@@ -7,13 +7,10 @@ import * as actions from '../store/actions/index';
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
-
-import Navbar from '../components/Navbar'
 
 import loginPageStyle from '../assets/jss/views/loginPageStyle'
 

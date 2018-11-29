@@ -1,26 +1,46 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Router, Route, Switch } from "react-router-dom";
-import Navbar from './components/Navbar';
-
-import bg from './assets/images/5150.jpg';
-
+import { withRouter, Switch, Route } from 'react-router-dom';
 import indexRoutes from "./routes/routeIndex";
 
-const App = () => {
+import { connect } from 'react-redux';
+import * as actions from './store/actions/index';
+
+import Navbar from './components/Navbar';
 
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <Navbar />
-        <Switch>
-          {indexRoutes.map((prop, key) => {
-            return <Route path={prop.path} key={key} component={prop.component} />;
-          })}
-        </Switch>
-    </React.Fragment>
-  );
+
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.onTryAutoLogin()
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <Navbar />
+          <Switch>
+            {indexRoutes.map((prop, key) => {
+              return <Route path={prop.path} key={key} component={prop.component} />;
+            })}
+          </Switch>
+      </React.Fragment>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoLogin: () => dispatch( actions.authCheckState() )
+  };
+};
+
+export default withRouter( connect( mapStateToProps, mapDispatchToProps)( App ) );

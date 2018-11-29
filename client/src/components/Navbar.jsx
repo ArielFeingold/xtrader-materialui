@@ -8,8 +8,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 
@@ -22,7 +20,7 @@ function Navbar(props) {
   let tabs, menuLinks;
   if(!props.isAuthenticated) {
     tabs =
-    <Grid container justify="flex-end" sm={10}>
+    <Grid container justify="flex-end">
       <Link className={classes.link} to="/login"><Button color="inherit">Login</Button></Link>
       <Link className={classes.link} to="/signup"><Button color="inherit">Signup</Button></Link>
     </Grid>
@@ -30,12 +28,12 @@ function Navbar(props) {
   } else {
     tabs =
     <React.Fragment>
-    <Grid container justify="flex-start" sm={6}>
-      <Button className={classes.menuButton} color="inherit">Protfolio</Button>
-      <Button className={classes.menuButton} color="inherit">Trade History</Button>
+    <Grid container justify="flex-start">
+      <Link className={classes.link} to="/protfolio"><Button color="inherit">Protfolio</Button></Link>
+      <Link className={classes.link} to="/trades"><Button color="inherit">Trade History</Button></Link>
     </Grid>
-    <Grid container justify="flex-end" sm={4}>
-      <Button className={classes.menuButton} color="inherit">Logout</Button>
+    <Grid container justify="flex-end">
+      <Link className={classes.link} to="/logout"><Button color="inherit">Logout</Button></Link>
     </Grid>
   </React.Fragment>
   menuLinks = [{link:"/protfolio", name:"Protfolio"}, {link:"/transactions", name:"Transactions"}, {link:"/logout", name:"Logout"}]
@@ -46,7 +44,7 @@ function Navbar(props) {
     <div className={classes.root}>
       <AppBar position="relative" color="primary">
         <Toolbar>
-          <Grid xs={11} sm={2}>
+          <Grid item xs={11} sm={2}>
             <Typography variant="h6" color="inherit" className={classes.grow}>
               xTrader
             </Typography>

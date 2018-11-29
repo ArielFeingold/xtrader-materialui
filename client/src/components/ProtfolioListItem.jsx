@@ -7,26 +7,37 @@ import protfolioListItemStyle from '../assets/jss/protfolioListItemStyle'
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 function ProtfolioListItem(props){
   const { classes } = props;
 
+  let trend;
+  if(props.currentPrice > props.openingPrice){ trend = classes.arrowUp}
+if(props.currentPrice === props.openingPrice) { trend= classes.square }
+if(props.currentPrice < props.openingPrice) { trend= classes.arrowDown }
   return(
-    <ListItem>
-      <Grid item xs={2}>
-        {props.symbol}
-      </Grid>
-      <Grid item xs={4}>
-        {props.userShares}
-      </Grid>
-      <Grid item xs={4}>
-        {props.currentPrice * props.userShares}
-      </Grid>
-      <Grid item xs={2}>
-        <div className={classes.arrowUp}></div>
-      </Grid>
-     </ListItem>
+    <Grid container >
+      <ListItem>
+        <Grid item xs={2}>
+          <Typography>{props.symbol}</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <Typography>{props.userShares}</Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Typography>{props.currentPrice}</Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Typography>{props.currentPrice * props.userShares}</Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <div className={trend}></div>
+        </Grid>
+       </ListItem>
+       <Divider/>
+    </Grid>
+
   )
 }
 

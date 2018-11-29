@@ -24,7 +24,16 @@ const protfolioPageStyle = theme =>({
   },
   subtitle1: {
     color: "#fff",
-  }
+  },
+  userInfo: {
+    marginTop:"0.5em",
+    height: "50px",
+    padding: "12px 0px 10px 20px"
+  },
+  errorMessage: {
+    marginTop:"1em",
+    color:"red"
+  },
 });
 
 

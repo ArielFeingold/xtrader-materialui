@@ -42,7 +42,7 @@ export const getProtfolio = () => {
       batchQuery = `https://api.iextrading.com/1.0/stock/market/batch?symbols=${stocksString}&types=price,ohlc`;
       return (batchQuery)
     })
-    .catch(err => console.log(err) )
+    .catch(err => console.log(err))
     .then(data => {
       return(axios.all([getUserData(), getMarketData(data)]))
       .then(axios.spread(function (user, market) {
@@ -129,7 +129,6 @@ export const addStock = ( ticker, qty) => {
       const balance = localStorage.getItem('balance')
       const total = response.data * qty
       if( total > balance ) {
-        console.log("no funds")
         dispatch(addStockFail("Insufficient Funds"))
       } else {
         const token = localStorage.getItem('token')

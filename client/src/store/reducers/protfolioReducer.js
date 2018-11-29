@@ -8,6 +8,7 @@ const initialState = {
   userStocks: [],
   loading: false,
   addStockError: null,
+  errors: null
 };
 
 const getProtfolioStart = ( state, action ) => {

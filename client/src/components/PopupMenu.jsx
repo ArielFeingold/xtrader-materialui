@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -25,9 +20,9 @@ class SwipeableTemporaryDrawer extends React.Component {
     top: false
   };
 
-  toggleDrawer = (open) => () => {
+  toggleDrawer = (value) => () => {
     this.setState({
-      top: open,
+      top: value,
     });
   };
 
@@ -51,13 +46,13 @@ class SwipeableTemporaryDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('top', false)}
-            onKeyDown={this.toggleDrawer('top', false)}
+            onClick={this.toggleDrawer(false)}
+            onKeyDown={this.toggleDrawer(false)}
           >
-            {this.props.tabs.map(tab => {
+            {this.props.tabs.map((tab, index) => {
               return(
-                <Link className={classes.link} to={tab.link}>
-                  <ListItem>
+                <Link key={index} className={classes.link} to={tab.link}>
+                  <ListItem >
                     <Typography variant="subtitle1">
                       {tab.name}
                     </Typography>

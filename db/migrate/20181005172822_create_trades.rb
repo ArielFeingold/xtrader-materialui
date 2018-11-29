@@ -3,6 +3,7 @@ class CreateTrades < ActiveRecord::Migration[5.2]
     create_table :trades do |t|
       t.integer :amount
       t.float :price
+      t.string :symbol
       t.belongs_to :user, index: true
       t.belongs_to :stock, index: true
 

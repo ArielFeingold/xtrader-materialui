@@ -5,7 +5,6 @@ import signupPageStyle from '../assets/jss/views/signupPageStyle'
 
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -37,7 +36,10 @@ class SignupPage extends React.Component {
   render() {
     const { classes } = this.props;
 
-    let authRedirect = null;
+    let authRedirect;
+    if(this.props.isAuthenticated) {
+      authRedirect = <Redirect to="/protfolio" />
+    }
       if ( this.props.isNewSignup ) {
         authRedirect = <Redirect to="/login" />
     }

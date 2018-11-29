@@ -7,7 +7,6 @@ const initialState = {
     signupError: null,
     loginError: null,
     loading: false,
-    authRedirectPath: '/',
     isNewSignup: false,
     userEmail: ""
 };
