@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
+
+import brandImage from '../assets/images/brandImage.jpg'
 
 import PopupMenu from './PopupMenu'
 import navbarStyle from '../assets/jss/navbarStyle'
@@ -30,7 +31,7 @@ function Navbar(props) {
     <React.Fragment>
     <Grid container justify="flex-start">
       <Link className={classes.link} to="/protfolio"><Button color="inherit">Protfolio</Button></Link>
-      <Link className={classes.link} to="/trades"><Button color="inherit">Trade History</Button></Link>
+      <Link className={classes.link} to="/trade-history"><Button color="inherit">Trade History</Button></Link>
     </Grid>
     <Grid container justify="flex-end">
       <Link className={classes.link} to="/logout"><Button color="inherit">Logout</Button></Link>
@@ -45,9 +46,7 @@ function Navbar(props) {
       <AppBar position="relative" color="primary">
         <Toolbar>
           <Grid item xs={11} sm={2}>
-            <Typography variant="h6" color="inherit" className={classes.grow}>
-              xTrader
-            </Typography>
+            <img src={brandImage} height="40px" alt="brand-logo"/>
           </Grid>
           <Hidden xsDown>
             {tabs}

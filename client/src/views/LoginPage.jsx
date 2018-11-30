@@ -19,10 +19,12 @@ class LoginPage extends React.Component {
   state = {
     email: '',
     password: '',
+    emailEmpty: false,
+    passwordEmpty: false
   }
 
   componentDidMount() {
-    this.setState({ email: this.props.userEmail})
+    this.setState({ email: this.props.userEmail })
   }
 
   handleChange = name => event => {
@@ -33,17 +35,37 @@ class LoginPage extends React.Component {
 
   submitHandler = ( event ) => {
     event.preventDefault();
-    this.props.onLogin( this.state.email, this.state.password);
+    this.setState ({ emailEmpty: false, passwordEmpty: false })
+    if(this.state.email && this.state.password) {
+      this.props.onLogin( this.state.email, this.state.password);
+    }
+    if(!this.state.email) {
+      this.setState({ emailEmpty: true})
+    }
+    if(!this.state.password) {
+      this.setState({ passwordEmpty: true})
+    }
+
   }
 
   render() {
     const { classes } = this.props;
 
+    let emailHelperText = "Enter Email"
+    if(this.state.emailEmpty) {
+      emailHelperText= "Email can not be blank"
+    }
+
+    let passwordHelperText = "Enter Password"
+    if(this.state.passwordEmpty) {
+      emailHelperText= "Password can not be blank"
+    }
+
     let loginError = null;
     if(this.props.errors) {
       loginError=
       <Collapse
-        in={this.props.errors}
+        in={true}
         timeout="auto"
         >
         <Button
@@ -75,8 +97,9 @@ class LoginPage extends React.Component {
               <form onSubmit={this.submitHandler}>
                 <TextField
                   fullWidth
+                  error={this.state.emailEmpty}
                   autoFocus
-                  helperText="Enter Email"
+                  helperText={emailHelperText}
                   id="email"
                   label="Email"
                   className={classes.textField}
@@ -87,7 +110,8 @@ class LoginPage extends React.Component {
                  />
                  <TextField
                    fullWidth
-                   helperText="Enter Password"
+                   error={this.state.passwordEmpty}
+                   helperText={passwordHelperText}
                    id="password"
                    label="Password"
                    className={classes.textField}

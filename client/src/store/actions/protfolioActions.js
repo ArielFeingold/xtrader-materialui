@@ -150,6 +150,7 @@ export const addStock = ( ticker, qty) => {
     })
     .catch(error => {
       if (error.response) {
+        debugger
         dispatch(addStockFail(error.response.data));
       } else if (error.request) {
         dispatch(addStockFail("Could Not Connect To Server"));
@@ -201,7 +202,6 @@ export const sellStock = ( ticker, qty) => {
       const qty = localStorage.getItem('qty')
       const userId = localStorage.getItem('userId')
       const ticker = localStorage.getItem('ticker')
-      const total = response.data * qty
       const token = localStorage.getItem('token')
       const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
       const url = `http://localhost:3001/users/${userId}`

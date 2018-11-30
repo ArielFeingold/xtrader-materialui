@@ -18,7 +18,8 @@ import Paper from '@material-ui/core/Paper';
 class SellButton extends React.Component {
   state = {
     open: false,
-    numberOfShares: 0
+    numberOfShares: 0,
+    insufficiantShares: false
   };
 
   handleOpen = () => {
@@ -42,12 +43,23 @@ class SellButton extends React.Component {
       this.props.sellStock(this.props.symbol, this.state.numberOfShares)
       this.setState({
         open: false,
+        insufficiantShares:false
+      })
+    } else {
+      this.setState({
+        insufficiantShares: true,
       })
     }
   }
 
   render() {
     const { classes } = this.props;
+
+    let helperText = "Choose Amount";
+    if(this.state.insufficiantShares){
+      helperText= "Insufficiant Shares"
+    }
+
 
     return (
       <div>
@@ -70,8 +82,8 @@ class SellButton extends React.Component {
                   <Typography variant="subtitle1"> Stock: {this.props.symbol}</Typography>
                    <TextField
                      fullWidth
-                     helperText="Choose Amount"
-                     error={this.state.emptyQty}
+                     helperText={helperText}
+                     error={this.state.insufficiantShares}
                      id="qty"
                      label="qty"
                      className={classes.textField}
@@ -79,7 +91,7 @@ class SellButton extends React.Component {
                      value={this.state.qty}
                      onChange={this.handleChange('numberOfShares')}
                      variant="outlined"
-                     defaultValue={this.props.userShares}
+                     defaultValue={this.state.numberOfShares}
                      InputProps={{
                        inputComponent: NumberInput,
                      }}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/index';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import protfolioPageStyle from '../assets/jss/views/protfolioPageStyle'
@@ -16,7 +15,6 @@ import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Collapse from '@material-ui/core/Collapse';
 
 class Protfolio extends React.Component {
 
@@ -29,10 +27,10 @@ class Protfolio extends React.Component {
 
   componentDidMount() {
     this.props.getProtfolio()
-    // this.autoCheck = setInterval(
-    //   () => this.props.getProtfolio(),
-    //   5000
-    // );
+    this.autoCheck = setInterval(
+      () => this.props.getProtfolio(),
+      10000
+    );
   }
 
   componentWillUnmount() {
@@ -83,23 +81,20 @@ class Protfolio extends React.Component {
         </Button>
     }
 
-    let authRedirect;
-      if ( !this.props.isAuthenticated ) {
-          authRedirect = <Redirect to="/access-denied" />
-      }
-
-      let userStocks = [];
-      if(this.props.userStocks) {
-        userStocks = this.props.userStocks.map(stock =>
-          <ProtfolioListItem
+    let userStocks = [];
+    if(this.props.userStocks) {
+      userStocks = this.props.userStocks.map(stock => {
+        if(stock.userShares > 0) {
+          return <ProtfolioListItem
             symbol={stock.symbol}
             key={stock.id}
             openingPrice={stock.openingPrice}
             currentPrice={stock.currentPrice}
             userShares={stock.userShares}
           />
-          )
+        }
       }
+    )}
 
       let userValue = 0
       if(this.props.userStocks.length > 0){
@@ -162,10 +157,10 @@ class Protfolio extends React.Component {
             </Grid>
             <Grid>
               <Paper className={classes.userInfo}>
-                <Typography align="left" variant="subtitle1" color="primary">Available Funds: ${this.props.balance}</Typography>
+                <Typography noWrap align="left" variant="subtitle1" color="primary">Available Funds: ${this.props.balance}</Typography>
               </Paper>
               <Paper className={classes.userInfo}>
-                <Typography align="left" variant="subtitle1" color="primary">Protfolio Value: ${userValue}</Typography>
+                <Typography  noWrap align="left" variant="subtitle1" color="primary">Protfolio Value: ${userValue}</Typography>
               </Paper>
             </Grid>
           </Grid>
