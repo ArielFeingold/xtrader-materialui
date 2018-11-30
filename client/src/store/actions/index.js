@@ -8,6 +8,7 @@ export {
 export {
   getProtfolio,
   addStock,
+  sellStock,
 } from './protfolioActions'
 
 export {

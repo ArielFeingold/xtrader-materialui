@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_10_09_122505) do
     t.integer "amount"
     t.float "price"
     t.string "symbol"
+    t.string "trade_type"
     t.integer "user_id"
     t.integer "stock_id"
     t.datetime "created_at", null: false

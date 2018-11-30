@@ -133,17 +133,91 @@ export const addStock = ( ticker, qty) => {
       } else {
         const token = localStorage.getItem('token')
         const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
-        const url = `http://localhost:3001/stocks`
+        const url = `http://localhost:3001/users/${userId}`
         const stockData = {
                     user_id: userId,
                     user_shares: qty,
                     symbol: ticker,
-                    stock_price: localStorage.getItem('stock_price')
+                    stock_price: localStorage.getItem('stock_price'),
+                    type:"buy"
                   }
-        return(axios.post(url, stockData, {headers: headers}))
+        return(axios.put(url, stockData, {headers: headers}))
       }
     })
-    .then( response => { dispatch(getProtfolio())})
+    .then( response => {
+      dispatch(getProtfolio())
+      dispatch(addStockSuccess())
+    })
+    .catch(error => {
+      if (error.response) {
+        dispatch(addStockFail(error.response.data));
+      } else if (error.request) {
+        dispatch(addStockFail("Could Not Connect To Server"));
+      } else {
+      console.log('Error', error.message);
+      }
+      console.log(error.config);
+      });
+    }
+};
+
+export const sellStockStart = () => {
+    return {
+        type: actionTypes.SELL_STOCK_START
+    };
+};
+
+export const sellStockSuccess = () => {
+  localStorage.removeItem('qty');
+  localStorage.removeItem('stock_price');
+  localStorage.removeItem('ticker');
+  return {
+      type: actionTypes.SELL_STOCK_SUCCESS,
+      loading: false
+  };
+};
+
+export const sellStockFail = (error) => {
+  localStorage.removeItem('qty');
+  localStorage.removeItem('stock_price');
+  localStorage.removeItem('ticker');
+    return {
+        type: actionTypes.SELL_STOCK_FAIL,
+        error: error
+    };
+};
+
+export const sellStock = ( ticker, qty) => {
+  return dispatch => {
+    dispatch(sellStockStart())
+    const lowTicker = ticker.toLowerCase()
+    localStorage.setItem('qty', qty);
+    localStorage.setItem('ticker', lowTicker);
+    const url = `https://api.iextrading.com/1.0/stock/${ticker}/price`
+    axios.get(url)
+    .then( response => {
+      const price = response.data
+      localStorage.setItem('stock_price', price);
+      const qty = localStorage.getItem('qty')
+      const userId = localStorage.getItem('userId')
+      const ticker = localStorage.getItem('ticker')
+      const total = response.data * qty
+      const token = localStorage.getItem('token')
+      const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
+      const url = `http://localhost:3001/users/${userId}`
+      const stockData = {
+                  user_id: userId,
+                  user_shares: qty,
+                  symbol: ticker,
+                  stock_price: localStorage.getItem('stock_price'),
+                  type:"sell"
+                }
+        return(axios.put(url, stockData, {headers: headers}))
+    })
+    .then( response => {
+      dispatch(getProtfolio())
+      dispatch(sellStockSuccess())
+    })
     .catch(error => {
     if (error.response) {
       dispatch(addStockFail(error.response.data));

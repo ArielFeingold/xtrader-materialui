@@ -1,10 +1,10 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { withRouter, Switch, Route } from 'react-router-dom';
-import indexRoutes from "./routes/routeIndex";
 
 import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
+import * as routesArrays from './routes/routeIndex'
 
 import Navbar from './components/Navbar';
 
@@ -17,12 +17,19 @@ class App extends React.Component {
   }
 
   render() {
+
+    let routes = null;
+    if(this.props.isAuthenticated) {
+      routes = routesArrays.authRouteIndex
+    } else {
+      routes = routesArrays.unAuthRouteIndex
+    }
     return (
       <React.Fragment>
         <CssBaseline />
         <Navbar />
           <Switch>
-            {indexRoutes.map((prop, key) => {
+            {routes.map((prop, key) => {
               return <Route path={prop.path} key={key} component={prop.component} />;
             })}
           </Switch>

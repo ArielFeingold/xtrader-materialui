@@ -1,3 +1,3 @@
 class TradeSerializer < ActiveModel::Serializer
-  attributes :id, :amount, :price
+  attributes :id, :amount, :price, :type
 end

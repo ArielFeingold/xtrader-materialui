@@ -66,6 +66,29 @@ const addStockFail = ( state, action ) => {
   );
 }
 
+const sellStockStart = ( state, action ) => {
+  return updateObject( state, {
+    addStockError: null,
+    loading: true,
+  });
+}
+
+const sellStockSuccess = ( state, action ) => {
+  return updateObject( state, {
+    sellStockError: null,
+    balance: action.balance,
+    loading: false
+  });
+}
+
+const sellStockFail = ( state, action ) => {
+  return updateObject( state, {
+    sellStockError: action.error,
+    loading: false
+    }
+  );
+}
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.GET_PROTFOLIO_START: return getProtfolioStart(state, action);
@@ -75,6 +98,10 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.ADD_STOCK_START: return addStockStart(state, action);
         case actionTypes.ADD_STOCK_SUCCESS: return addStockSuccess(state, action);
         case actionTypes.ADD_STOCK_FAIL: return addStockFail(state, action);
+
+        case actionTypes.SELL_STOCK_START: return sellStockStart(state, action);
+        case actionTypes.SELL_STOCK_SUCCESS: return sellStockSuccess(state, action);
+        case actionTypes.SELL_STOCK_FAIL: return sellStockFail(state, action);
 
         case actionTypes.SET_USER: return setUser(state, action);
 

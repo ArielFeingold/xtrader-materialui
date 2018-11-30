@@ -27,13 +27,12 @@ class Protfolio extends React.Component {
     emptyQty: false
   }
 
-
   componentDidMount() {
     this.props.getProtfolio()
-    this.autoCheck = setInterval(
-      () => this.props.getProtfolio(),
-      5000
-    );
+    // this.autoCheck = setInterval(
+    //   () => this.props.getProtfolio(),
+    //   5000
+    // );
   }
 
   componentWillUnmount() {
@@ -113,7 +112,6 @@ class Protfolio extends React.Component {
 
     return (
       <div className={classes.root}>
-        {authRedirect}
         <Grid container spacing={24}>
           <Grid item xs={12} sm={4}>
             <Grid item xs={12} className={classes.formHeader}>
@@ -182,15 +180,16 @@ class Protfolio extends React.Component {
                     <Grid item xs={2}>
                       <Typography className={classes.subtitle1} variant="subtitle1">Shares</Typography>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                       <Typography className={classes.subtitle1} variant="subtitle1">Price</Typography>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                       <Typography className={classes.subtitle1} variant="subtitle1">Value</Typography>
                     </Grid>
                     <Grid item xs={2}>
                       <Typography className={classes.subtitle1} variant="subtitle1">Trend</Typography>
                     </Grid>
+                    <Grid item xs={2}></Grid>
                    </ListItem>
                 </Grid>
                 {userStocks}
