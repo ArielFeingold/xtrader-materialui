@@ -21,6 +21,9 @@
 /storage/*
 !/storage/.keep
 
+# Production
+/public
+
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
