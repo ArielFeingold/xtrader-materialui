@@ -22,18 +22,16 @@ const protfolioListItemStyle = {
     borderRightWidth: 10,
     borderBottomWidth: 0,
     borderLeftWidth: 10,
-    borderTopColor: 'transparent',
+    borderTopColor: 'red',
     borderRightColor: 'transparent',
     borderBottomColor: 'red',
     borderLeftColor: 'transparent',
   },
   square: {
-    width: 20,
-    height: 20,
+    width: "20",
+    height: "10",
     backgroundColor: 'red'
-}
-
-
+  }
 }
 
 
