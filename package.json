@@ -1,11 +1,30 @@
 {
-  "name": "xtrader-heruko",
-  "engines": {
-    "node": "8.12.0"
+  "name": "gymjam",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
   },
   "scripts": {
     "build": "cd client && npm install && npm run build && cd ..",
     "deploy": "cp -a client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArielFeingold/xtrader-materialui.git"
+  },
+  "author": "Ariel Feingold",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArielFeingold/gymjam/issues"
+  },
+  "homepage": "https://github.com/ArielFeingold/xtrader-materialui#readme",
+  "dependencies": {
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }
