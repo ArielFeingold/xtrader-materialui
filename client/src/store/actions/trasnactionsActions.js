@@ -25,7 +25,7 @@ export const getTransactions = () => {
   return dispatch => {
     dispatch(getTransactionsStart())
     const token = localStorage.getItem('token');
-    const url = `http://localhost:3001/trades`;
+    const url = `https://xtrader.herokuapp.com/api/v1/trades`;
     const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`};
     axios.get(url, {headers: headers})
     .then(response => {

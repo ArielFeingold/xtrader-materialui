@@ -78,7 +78,7 @@ function getUserData() {
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId')
   const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
-  const url = `http://localhost:3001/users/${userId}`
+  const url = `https://xtrader.herokuapp.com/api/v1/users/${userId}`
   return axios.get(url, {headers: headers});
 }
 
@@ -133,7 +133,7 @@ export const addStock = ( ticker, qty) => {
       } else {
         const token = localStorage.getItem('token')
         const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
-        const url = `http://localhost:3001/users/${userId}`
+        const url = `https://xtrader.herokuapp.com/api/v1/users/${userId}`
         const stockData = {
                     user_id: userId,
                     user_shares: qty,
@@ -204,7 +204,7 @@ export const sellStock = ( ticker, qty) => {
       const ticker = localStorage.getItem('ticker')
       const token = localStorage.getItem('token')
       const headers = {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
-      const url = `http://localhost:3001/users/${userId}`
+      const url = `https://xtrader.herokuapp.com/api/v1/users/${userId}`
       const stockData = {
                   user_id: userId,
                   user_shares: qty,

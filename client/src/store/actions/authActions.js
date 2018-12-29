@@ -34,7 +34,7 @@ export const signup = (email, password, username) => {
             username: username
           }
       };
-      let url = 'http://localhost:3001/users';
+      let url = 'https://xtrader.herokuapp.com/api/v1/users';
       axios.post(url, authData )
       .then(response => {
         dispatch(signupSuccess(response.data.user))})
@@ -73,7 +73,7 @@ export const login = (email, password) => {
             password: password
           }
       };
-      let url = 'http://localhost:3001/user_token';
+      let url = 'https://xtrader.herokuapp.com/api/v1/user_token';
       axios.post(url, authData )
       .then(response => {
         const decodedJWT = jwt_decode(response.data.jwt);
